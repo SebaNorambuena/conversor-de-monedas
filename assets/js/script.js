@@ -50,38 +50,44 @@ function configGrafico(tipos){
 }
 
 async function renderGrafica() {
-    const tipos = await getMoney(conversor.toLowerCase());
+    const tipos = await getMoney(conversor.value.toLowerCase());
     const config = configGrafico(tipos);
     const chartDOM = document.getElementById("myChart");
     new Chart(chartDOM, config);
 }
 
 
-const inputUser = document.getElementById("input-user").value
-const conversor = document.getElementById("convercion").value
+const inputUser = document.getElementById("input-user")
+const conversor = document.getElementById("convercion")
 const resultado = document.getElementById("resultado")
 const boton = document.getElementById("boton")
 boton.addEventListener("click", async ()=>{
+
     const valores = await getMoney("") 
-    if (conversor === "Dolar") {
-        resultado.innerHTML = `Resultado: $ ${(inputUser / valores.dolar.valor).toFixed(2)}`
+    if (conversor.value === "Dolar") {
+        resultado.innerHTML = `Resultado: $ ${(inputUser.value / valores.dolar.valor).toFixed(2)}`
+        inputUser.value = ""
+        renderGrafica()
     }
-    else if (conversor === "Euro") {
-        resultado.innerHTML = `Resultado: $ ${(inputUser / valores.euro.valor).toFixed(2)}`
+    else if (conversor.value === "Euro") {
+        resultado.innerHTML = `Resultado: $ ${(inputUser.value / valores.euro.valor).toFixed(2)}`
+        inputUser.value = ""
+        renderGrafica()
     }
-    else if (conversor === "UF") {
-        resultado.innerHTML = `Resultado: $ ${(inputUser / valores.uf.valor).toFixed(2)}`
+    else if (conversor.value === "UF") {
+        resultado.innerHTML = `Resultado: $ ${(inputUser.value / valores.uf.valor).toFixed(2)}`
+        inputUser.value = ""
+        renderGrafica()
     }
-    else if (conversor === "IVP") {
-        resultado.innerHTML = `Resultado: $ ${(inputUser / valores.ivp.valor).toFixed(2)}`
+    else if (conversor.value === "IVP") {
+        resultado.innerHTML = `Resultado: $ ${(inputUser.value / valores.ivp.valor).toFixed(2)}`
+        inputUser.value = ""
+        renderGrafica()
     }
-    else if (conversor === "UTM") {
-        resultado.innerHTML = `Resultado: $ ${(inputUser / valores.utm.valor).toFixed(2)}`
+    else if (conversor.value === "UTM") {
+        resultado.innerHTML = `Resultado: $ ${(inputUser.value / valores.utm.valor).toFixed(2)}`
+        inputUser.value = ""
+        renderGrafica()
     }
+    
 })
-
-renderGrafica()
-
-
-
-
